@@ -8,5 +8,9 @@ public class Operators {
             return false;
         }
     }
+    public int multiplyByPowerOfTwo(int number,int multiplyer){
+        int result=number<<multiplyer;
+        return result;
+    }
 }
 
