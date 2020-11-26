@@ -10,7 +10,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ListCounterTest {
 
     @Test
-    void ListCounter() {
+    void listCounterEmptyList() {
+        ListCounter listCounter = new ListCounter();
+        List<String> names = new ArrayList<>();
+        assertEquals(0, listCounter.number(names));
+    }
+
+    @Test
+    void listCounterNamesWithoutA() {
+        ListCounter listCounter = new ListCounter();
+        List<String> names = new ArrayList<>();
+        names.add("Geza");
+        names.add("Misa");
+        assertEquals(0, listCounter.number(names));
+    }
+
+    @Test
+    void listCounter() {
         ListCounter listCounter = new ListCounter();
         List<String> names = new ArrayList<>();
         names.add("Ananasz");
