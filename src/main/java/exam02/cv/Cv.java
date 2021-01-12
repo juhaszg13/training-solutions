@@ -1,18 +1,22 @@
 package exam02.cv;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cv {
     private String name;
-    private List<Skill> skills;
+    private List<Skill> skills=new ArrayList<>();
 
     public Cv(String name) {
         this.name = name;
     }
 
-    public void addSkills(Skill... skills) {
+    public void addSkills(String... skills) {
         for (int i = 0; i < skills.length; i++) {
-            this.skills.add(skills[i]);
+            int occurance=skills[i].indexOf("(");
+            String subject=skills[i].substring(0,occurance).trim();
+            int level=Integer.parseInt(skills[i].substring(occurance+1,occurance+2));
+            this.skills.add(new Skill(subject,level));
         }
     }
 
@@ -22,7 +26,7 @@ public class Cv {
                 return skills.get(i).getLevel();
             }
         }
-        return 0;
+        throw new IllegalArgumentException("Subject not found");
     }
 
     public String getName() {
