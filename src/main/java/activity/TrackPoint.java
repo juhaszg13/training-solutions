@@ -1,8 +1,8 @@
 package activity;
 
 public class TrackPoint {
-    private Coordinate coordinate;
-    private double elevation;
+    private final Coordinate coordinate;
+    private final double elevation;
 
     public TrackPoint(Coordinate coordinate, double elevation) {
         this.coordinate = coordinate;
@@ -10,14 +10,14 @@ public class TrackPoint {
     }
 
     public double getDistanceFrom(TrackPoint point) {
-        double lat1 = this.getCoordinate().getLatitude();
-        double lat2 = point.getCoordinate().getLatitude();
-        double lon1 = this.getCoordinate().getLongitude();
-        double lon2 = point.getCoordinate().getLongitude();
-        double el1 = this.getElevation();
-        double el2 = point.getElevation();
+        final double lat1 = this.coordinate.getLatitude();
+        final double lat2 = point.coordinate.getLatitude();
+        final double lon1 = this.coordinate.getLongitude();
+        final double lon2 = point.coordinate.getLongitude();
+        double el1 = this.elevation;
+        double el2 = point.elevation;
 
-        int r = 6371; // Radius of the earth
+        final int r = 6371; // Radius of the earth
 
         double latDistance = Math.toRadians(lat2 - lat1);
         double lonDistance = Math.toRadians(lon2 - lon1);
@@ -33,7 +33,12 @@ public class TrackPoint {
 
         return Math.sqrt(distance);
     }
-
+public boolean higherThan(TrackPoint anotherTrackpoint){
+        return elevation>anotherTrackpoint.getElevation();
+}
+public double elevationDifference(TrackPoint anotherTrackPoint){
+        return Math.abs(elevation-anotherTrackPoint.getElevation());
+}
     public Coordinate getCoordinate() {
         return coordinate;
     }

@@ -1,6 +1,7 @@
 package activity;
 
 public interface Activity {
-    public double getDistance();
-    public ActivityType getType();
+    double getDistance();
+    ActivityType getType();
+    boolean hasTrack();
 }

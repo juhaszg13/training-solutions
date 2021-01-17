@@ -23,15 +23,29 @@ public class Activities {
                     distance += activities.get(j).getDistance();
                 }
             }
+
             report.add(new Report(ActivityType.values()[i], distance));
         }
         return report;
     }
+    public List<Report> distancesByTypes() {
+        double[] sum=new double[ActivityType.values().length];
+        for(Activity activity:activities){
+            sum[activity.getType().ordinal()]+=activity.getDistance();
+        }
+        List<Report> report = new ArrayList<>();
+        for(ActivityType activityType:ActivityType.values()){
+        report.add(new Report(activityType, sum[activityType.ordinal()]));
+        }
+        return report;
+    }
+
 
     public int numberOfTrackActivities() {
         int sum = 0;
         for (Activity activity : activities) {
-            if (activity instanceof ActivityWithTrack) {
+            //if (activity instanceof ActivityWithTrack) {
+            if(activity.hasTrack()){
                 sum++;
             }
         }
@@ -41,7 +55,8 @@ public class Activities {
     public int numberOfWithoutTrackActivities() {
         int sum = 0;
         for (Activity activity : activities) {
-            if (activity instanceof ActivityWithoutTrack) {
+            //if (activity instanceof ActivityWithoutTrack) {
+            if(!activity.hasTrack()){
                 sum++;
             }
         }

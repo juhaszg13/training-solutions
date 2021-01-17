@@ -13,4 +13,9 @@ public class ActivityWithoutTrack implements Activity {
     public ActivityType getType() {
         return activityType;
     }
+
+    @Override
+    public boolean hasTrack() {
+        return false;
+    }
 }
